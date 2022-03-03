@@ -21,20 +21,17 @@ jobs:
       buildConfiguration: 'Release'
 
     steps:
+      - uses: nanoframework/nanobuild@v1
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
 
       - name: Setup MSBuild Path
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Install NuGet client
         uses: nuget/setup-nuget@v1
-        
-      - name: Install build components for dotNet nanoFramework
-        uses: networkfusion/nanobuild@v1
 
       - name: Restore nugets
         run: nuget restore ${{ env.solution }} -ConfigFile NuGet.Config
