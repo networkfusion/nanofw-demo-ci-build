@@ -1,0 +1,46 @@
+# Copyright (c) NetworkFusion, .NET Foundation and Contributors
+# See LICENSE file in the project root for full license information.
+
+# This workflow will build the solution and release a nuget.
+
+name: Build nanoFramework lib and release nuget #TODO, handle releases!
+
+on: [push, pull_request]
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  build-drivers:
+    name: Build nanoFramework/HelloWorld
+    timeout-minutes: 15
+    runs-on: windows-latest
+    env:
+      solution: 'nanoFramework.ClickDrivers.sln'
+      buildPlatform: 'Any CPU'
+      buildConfiguration: 'Release'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+
+      - name: Install NuGet client
+        uses: nuget/setup-nuget@v1
+        
+      - name: Install build components for nanoFramework
+        uses: nanoframework/nanobuild@v1
+
+      - name: Setup MSBuild Path
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Restore nugets
+        run: nuget restore ${{ env.solution }} -ConfigFile NuGet.Config
+        
+
+      - name: Build App
+        run: msbuild ${{ env.solution }} /p:Configuration=${{ env.buildConfiguration }} /p:Platform=${{ env.buildPlatform }}
+
