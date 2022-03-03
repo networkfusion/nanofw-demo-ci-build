@@ -34,7 +34,7 @@ jobs:
         uses: nuget/setup-nuget@v1
         
       - name: Install build components for dotNet nanoFramework
-        uses: nanoframework/nanobuild@v1
+        uses: networkfusion/nanobuild@v1
 
       - name: Restore nugets
         run: nuget restore ${{ env.solution }} -ConfigFile NuGet.Config
