@@ -32,11 +32,11 @@ jobs:
         with:
           msbuild-architecture: x64
 
-      - name: Install NuGet client
-        uses: nuget/setup-nuget@v1
+#       - name: Install NuGet client
+#         uses: nuget/setup-nuget@v1
 
-      - name: Restore nugets
-        run: nuget restore ${{ env.solution }} -ConfigFile NuGet.Config
+#       - name: Restore nugets
+#         run: nuget restore ${{ env.solution }} -ConfigFile NuGet.Config
         
       - name: Build App
-        run: msbuild ${{ env.solution }} /p:Configuration=${{ env.buildConfiguration }}
+        run: msbuild ${{ env.solution }} /p:Configuration=${{ env.buildConfiguration }} -t:restore -p:RestorePackagesConfig=true
