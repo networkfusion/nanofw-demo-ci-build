@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 15
     runs-on: windows-latest
     env:
-      solution: 'nanoFramework.ClickDrivers.sln'
+      solution: 'nanoFramework.HelloWorld.sln'
       buildPlatform: 'Any CPU'
       buildConfiguration: 'Release'
 
