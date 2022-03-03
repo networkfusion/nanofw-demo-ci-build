@@ -35,7 +35,7 @@ jobs:
         uses: nanoframework/nanobuild@v1
 
       - name: Setup MSBuild Path
-        uses: microsoft/setup-msbuild@v1.0.2
+        uses: microsoft/setup-msbuild@v1.1
 
       - name: Restore nugets
         run: nuget restore ${{ env.solution }} -ConfigFile NuGet.Config
