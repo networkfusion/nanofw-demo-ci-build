@@ -17,7 +17,7 @@ defaults:
     shell: pwsh
 
 jobs:
-  update-nanoframework-preview:
+  update-nanoframework-nugets:
     name: Update .NET nanoFramework dependencies
     timeout-minutes: 15
     runs-on: windows-latest
@@ -29,4 +29,5 @@ jobs:
       - name: Update dependencies
         uses: nanoframework/nanodu@v1
         with:
+          stablePackages: true
           solutionsToCheck: 'nanoFramework.HelloWorld.sln'
